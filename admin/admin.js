@@ -9,27 +9,10 @@ elm.selectionEnd = cursorPos-1;
 }
 jQuery(function($){
  
-	$("#menu_choix").hover(
-	  function(){    
-		  $("#menu_deroulant").stop(true, true).fadeIn();   
-		   
-		 },
-	   function(){  
-		  $("#menu_deroulant").stop(true, true).fadeOut();                    
-	   }); 
+
 
     var urlselection = location.href.replace(/http?:\/\/.*?\//i , '/');  
-	$("#titre_menu_choix").html('Choisir');	
-    $("#menu_deroulant ul li a").each(function(){	  
-	  var urlsousmenu = ($(this).attr('href')); 		    
-		urlsousmenu = urlsousmenu.replace(/http?:\/\/.*?\//i , '');  
-
-	  if (urlselection.indexOf(urlsousmenu,0) >= 0){			 
-		 $("#titre_menu_choix").html($(this).html());
-		 $(this).addClass('menu_selection');
-		//$(this).addClass("sous-menu-selected"); à revoir la couleur de la classe est écrasée par a:link a:visited
-	  }
-    });
+	
 	
 		// input only integers
 	$('body').delegate('input.only_integer','keyup',function(){

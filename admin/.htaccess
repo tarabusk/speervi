@@ -1,4 +1,4 @@
-#AuthUserFile C:\www\taraspeervi\repertoire_protege\.htpasswd
+#AuthUserFile C:\www\speervi\repertoire_protege\.htpasswd
 #AuthGroupFile /dev/null
 #AuthName "Accès réservé -- Accès démo"
 #AuthType Basic
