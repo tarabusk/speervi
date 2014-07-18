@@ -1,6 +1,6 @@
-<?php  require_once('../classes/form.class.php');  
+<?php  require_once('../classes/form.class.php');  ?>
 
-?>
+
 <a class="ajouter_liste" href="<?php echo htmlspecialchars($this->url . '&action=add') ?>"><?php echo 'Ajouter une société'; ?></a>
 <form name="formulaire_recherche" id="formulaire_recherche" method="post" action="<?php echo $this->url; ?>" onsubmit="return LancerRecherche()">
     <?php

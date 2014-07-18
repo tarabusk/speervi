@@ -1,16 +1,50 @@
 <?php
+session_start();
+$GLOBALS['psel']="1";
 require('../fichiers-recquis.php');
-require('../../fonctions_php.php');
-$GLOBALS['psel']="2";
-// Plannings
+require('../fonctions_php.php');
+$TableAction =  $_REQUEST['typeaction'];
+// Societes
 class ControllerSociete extends Controller {
 	
-	// Récupère la liste des Plannings à afficher
 	function getList() {
-	  
+	   if ($_FILES["userfile"]["name"]) $this->result_import=ImporterSocietes();
+       $nbitemparpage= 250;
+	   if (isset($_REQUEST['ref'])){
+	    $_SESSION['ref']=$_REQUEST['ref'];  	  
+	   }
+	   if (isset($_REQUEST['refville'])){
+	    $_SESSION['refville']=$_REQUEST['refville'];	  
+	   }
+	   if (isset($_REQUEST['npage'])){
+	    $_SESSION['npage']=$_REQUEST['npage'];	  
+	   }
+       if (($_SESSION['ref']!='') || ($_SESSION['refville']!='')){         
+          $this->npage=$_SESSION['npage'];			  
+		  $this->pagination=AfficherPaginationRecherche($_SESSION['npage'], $nbitemparpage, $_SESSION['ref'], $_SESSION['refville']);         		
+		  return getListeSocietesRechercheNom($_SESSION['ref'], $_SESSION['refville'],$_SESSION['npage'], $nbitemparpage);} 
+        else if ($_SESSION['npage']){
+          $this->pagination=AfficherPagination($_SESSION['npage'], $nbitemparpage);
+          $this->npage=$_SESSION['npage'];			
+          return getListeSocietesParPage($_SESSION['npage'], $nbitemparpage);
+        }else 	{
+          $this->pagination=AfficherPagination($_SESSION['npage'], $nbitemparpage);
+          $this->npage=$_SESSION['npage'];			
+		  return getListeSocietesParPage(1,$nbitemparpage);
+		  }
 	}
 	// Affichage
-	function index() { 	  
+	function index() { 
+	  
+	   
+	    $this->nom_sing='société';
+		$this->nom_plur='sociétés';
+		
+		if ($_REQUEST['page']){
+		  $this->action_admin='Modifier une '.$this->nom_sing;
+		}else{
+		  $this->action_admin='Créer une '.$this->nom_sing;
+		}		
 		return parent::index();
 	}
     function delete() {		  
@@ -42,6 +76,7 @@ class ControllerSociete extends Controller {
 							  'dirigeant' => $_REQUEST['dirigeant'],
 							  'naf' => $_REQUEST['naf'],
 							  'autre' => $_REQUEST['autre'],
+								
 							 );	
 		$champsInsert = $champsUpdate;								 		
 		$id = $_REQUEST['id'];
@@ -57,7 +92,6 @@ class ControllerSociete extends Controller {
 		$this->redirect($id); // Rechargement de la page avec l'Bien courant
 	}
 	
-
 }
 
 class ControllerEchange extends Controller {

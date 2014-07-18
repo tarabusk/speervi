@@ -1,5 +1,5 @@
-<?php require_once('../../classes/form.class.php'); 
- require_once('../../fonctions_php.php'); 
+<?php require_once('../classes/form.class.php'); 
+ require_once('../fonctions_php.php'); 
 if (isset($_REQUEST["rv"])){
   $id_rencontre=$_REQUEST["rv"];
   $LaRencontreSel = getEnregistrement('rencontre', $id_rencontre);

@@ -1,3 +1,9 @@
-#Options +FollowSymLinks 
-RewriteEngine On
+#AuthUserFile C:\www\speervi\repertoire_protege\.htpasswd
+#AuthGroupFile /dev/null
+#AuthName "Accès réservé -- Accès démo"
+#AuthType Basic
+#<Limit GET POST>
+#require valid-user
+#</Limit>
 
+ 

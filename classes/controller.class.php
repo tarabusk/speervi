@@ -62,7 +62,7 @@ require_once('mysql.class.php');
       $this->article = $this->getArticle();
          
     }
-	include(dirname(__FILE__) . '/../admin/template.html.php');
+	include(dirname(__FILE__) . '/../template.html.php');
   }
 
   // Ajoute un article
