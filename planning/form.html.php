@@ -71,28 +71,11 @@ function champsrencontre_okok(){
 }
 //-->
 </script>
-<!--
- <?php //if (isset ($LaSocieteSel)){ ?>
-    <div id="resume_planning"> 
-	  <div>
-	    <h1><?php// echo $LaSocieteSel->nom; ?></h1>
-		<?php 
-		 // echo 'Rappeler le : '.dateFrancaiseLitterale($LaRencontreSel->date_rencontre).' a '.HeurefrFrancaise($LaRencontreSel->date_rencontre);
-         // echo $LaRencontreSel->commentaire; ?>
-	  </div>
-	  <div>
-	    <h2> Contact </h2>
-		<?php// echo $LaSocieteSel->prenom_contact.' '. $LaSocieteSel->nom_contact;
-		     // echo 'Téléphone : '. $LaSocieteSel->tel_contact;
-			 // echo 'Portable  : '. $LaSocieteSel->portable_contact;
-			  //echo 'Email  : '. $LaSocieteSel->email_contact;
-		?>
-	  </div>
-	</div>
-	<?php// } ?>-->
-  <h1> <?php echo $this->article->nom; ?></h1>
+
+
 
 	<?php if ($this->page > 0){ ?>
+	  <h1> <?php echo $this->article->nom; ?></h1>
 	<hr>
 	<h2 id="titre_encart_rencontre"> Rappels </h2>
 	    <?php $LaDerniereRencontre=GetDernierRencontreSociete($this->article->id);
@@ -130,36 +113,11 @@ function champsrencontre_okok(){
 	   
 			<div style="clear:both"></div>
 	
-	<!--
-	<h2 id="titre_encart_rencontre"> Rendez-vous </h2>
-	    <div id="encart_rencontre">
-		   <div class="liste">
-			<ul>
-			<?php	
-		//	foreach(GetListeRencontreSociete ($this->article->id) AS $LaRencontre){
-		//	  echo '<li class="rencontre_li" id="rencontre_li_'.$LaRencontre->id.'"> '.datefrFrancaiseAvecA ($LaRencontre->date_rencontre).' - '.$LaRencontre->type_rencontre.' -'.$LaRencontre->commentaire.'  <img class="supprimer_echange" id="rencontre_'.$LaRencontre->id.'" src="img/del.jpg" alt="supprimer" title="Supprimer la rencontre" /> </li>';
-		//	}
-			?>
-			</ul>
-			</div>
-			<div class="formulaire">
-			<h3>Ajouter un prochain rendez-vous</h3>
-			<form enctype="multipart/form-data" name="form_rencontre" id="form_rencontre" class="article_form" method="post" action="#" onsubmit="return champsrencontreok()">
-			  Date : <input name="date_rencontre" id="date_rencontre" type="text" class="largeur_petit3"/><br/>
-			  <input type="radio" name="type_rencontre" value="telephone" checked="checked"> Téléphonique &nbsp;&nbsp;
-			  <input type="radio" name="type_rencontre" value="physique" > Rendez-vous physique &nbsp;&nbsp;
-			  <input type="radio" name="type_rencontre" value="email"> Email <br/>
-			  <?php 
-			  //echo Form::textarea('commentaire_rencontre', '','Commentaire','','largeur_moyen') ;
-			  //echo Form::hidden('id_rencontre', 0);
-			  //echo Form::btn_valider();
-			  ?>
-			</form>
-			</div>
-			<div style="clear:both"></div>
-		</div>>-->
-    <?php } ?>
+
 	
+    <?php }else{ ?>
+	 <h1> Choisissez un rappel à effectuer</h1>
+	   <?php } ?>
 		<?php if ($this->page > 0){ ?>
 		<hr><div  id="encart_echange"><div title="Vider les champs pour ajouter un nouvel échange" id="ajouter_echange"> + </div>
 		<h2 id="titre_encart_echange"> Echanges </h2>
@@ -171,7 +129,7 @@ function champsrencontre_okok(){
 			$ni=0;
 			foreach(GetListesEchangesSociete ($this->article->id) AS $LEchange){
 			  $ni++;
-			  echo '<li  class="echange_li" id="echange_li_'.$LEchange->id.'"><span class="date_echange"> '.datefrFrancaiseAvecA ($LEchange->date_echange).' </span> - '.$LEchange->commentaire.'  <img class="supprimer_echange" id="echange_'.$LEchange->id.'" src="../img/del.jpg" alt="supprimer" title="Supprimer l\'échange" /> </li>';
+			  echo '<li  class="echange_li" id="echange_li_'.$LEchange->id.'"><span class="date_echange"> '.datefrFrancaiseAvecA ($LEchange->date_echange).' </span> - '.$LEchange->commentaire.'  <div class="supprimer_echange" id="echange_'.$LEchange->id.'"  title="Supprimer l\'échange"> x </div> </li>';
 			}
 			if($ni==0) echo 'Pas encore d\'échange avec cette société';
 			?>
@@ -194,6 +152,7 @@ function champsrencontre_okok(){
 		 </div>
 	<?php } ?>
 	<hr>
+	<?php if ($this->page > 0){ ?>
     <h2 id="titre_encart_societe" > Société </h2>
     <div id="encart_societe">
 	 <form enctype="multipart/form-data" name="formulaire_envoi_fichier" id="formulaire_envoi_fichier" class="article_form" method="post" action="" onsubmit="return champsok()">
@@ -236,6 +195,7 @@ function champsrencontre_okok(){
 	<?php echo Form::ValiderEtSupprimer($this->page != 0);?>	
 	</form>   
 	</div>
+	<?php } ?>
 <br/>
 <br/>
 
