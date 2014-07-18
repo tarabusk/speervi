@@ -175,6 +175,7 @@ function champsrencontre_okok(){
 		 </div>
 	<?php } ?>
 	<hr>
+	
     <h2 id="titre_encart_societe" > Société </h2>
     <div id="encart_societe">
 	 <form enctype="multipart/form-data" name="formulaire_envoi_fichier" id="formulaire_envoi_fichier" class="article_form" method="post" action="" onsubmit="return champsok()">
