@@ -1,9 +1,9 @@
 <?php  
-require_once ('.variables-site.php');
-require_once('.classes/form.class.php'); 
-require_once('.fonctions_mysql.php'); 
-include (".connexion-sql.php");
-include ("fonctions_php.php");
+require_once ('../variables-site.php');
+
+require_once('../fonctions_mysql.php'); 
+include ("../connexion-sql.php");
+include ("../fonctions_php.php");
 
 if ($_GET['action'] == "SupprimerEchange") { SupprimerEchange(); } 
 

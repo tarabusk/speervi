@@ -9,8 +9,7 @@ $GLOBALS['EnDevLocal']=stristr ($_SERVER["HTTP_HOST"], 'localhost')!=false;
   $CheminSite ='/';
  
 (isset ($_REQUEST["page"]))?$page = $_REQUEST["page"]:$page ='';
-$nom_rep = explode('/', $_SERVER['SCRIPT_NAME']);
-$theme = $nom_rep[count($nom_rep)-2];
+
 
 if ($GLOBALS['EnDevLocal'])
   $id_connec=$_SERVER["REMOTE_USER"];

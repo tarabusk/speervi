@@ -152,7 +152,7 @@ function champsrencontre_okok(){
 			$ni=0;
 			foreach(GetListesEchangesSociete ($this->article->id) AS $LEchange){
 			  $ni++;
-			  echo '<li  class="echange_li" id="echange_li_'.$LEchange->id.'"><span class="date_echange"> '.datefrFrancaiseAvecA ($LEchange->date_echange).' </span>- '.$LEchange->commentaire.'  <img class="supprimer_echange" id="echange_'.$LEchange->id.'" src="img/del.jpg" alt="supprimer" title="Supprimer l\'échange" /> </li>';
+			  echo '<li  class="echange_li" id="echange_li_'.$LEchange->id.'"><span class="date_echange"> '.datefrFrancaiseAvecA ($LEchange->date_echange).' </span>- '.$LEchange->commentaire.'  <div class="supprimer_echange" id="echange_'.$LEchange->id.'" > x</div> </li>';
 			}
 			if($ni==0) echo 'Pas encore d\'échange avec cette société';
 			?>
