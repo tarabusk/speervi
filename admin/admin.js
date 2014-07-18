@@ -182,10 +182,3 @@ function showSubmitButton() {
 	}
 }
 
-// Change la langue de l'utilisateur
-function changerLangue(langue) {
-	var date = new Date();
-	date.setTime(date.getTime()+(365*24*60*60*1000));
-	document.cookie = "user_language=" + langue + "; path=/; expires=" + date.toGMTString();
-	location.reload();
-}
