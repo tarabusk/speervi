@@ -1,7 +1,7 @@
 <?php  require_once('../classes/form.class.php');  ?>
 
 
-<a class="ajouter_liste" href="<?php echo htmlspecialchars($this->url . '&action=add') ?>">+</a>
+<a class="ajouter_liste" title = "Add a company" href="<?php echo htmlspecialchars($this->url . '&action=add') ?>">+</a>
 <form name="formulaire_recherche" id="formulaire_recherche" method="post" action="<?php echo $this->url; ?>" onsubmit="return LancerRecherche()">
     <?php
 	$refno        = '';
@@ -10,7 +10,7 @@
    // echo 'session : '.$_SESSION['refville']. ' - requete : '.$_REQUEST['refville'];
 	if (isset($_SESSION["ref"]) || isset($_SESSION["refville"])){
 	  $refchoisie=$_SESSION["ref"];
-	  $refno= '<br/> &rarr; <a style="font-style:italic;" href="'.$this->url.'&ref=&refville=&npage="> Retrouver toutes les sociétés </a>';
+	  $refno= '<br/> &rarr; <a style="font-style:italic;" href="'.$this->url.'&ref=&refville=&npage="> Toutes les sociétés </a>';
 	  $villechoisie=$_SESSION["refville"];
 	}
 	 echo  '&nbsp;&nbsp;&nbsp;'.Form::text('recherche_ref', $refchoisie, '&rarr; Rechercher par nom / NAF','','').'<br/>';
@@ -28,7 +28,7 @@
 				
 				<?php } ?>
 				<th width="350"><?php echo 'Liste des '. $this->nom_plur; ?></th>	
-<th width="20"><?php 'Sup.' ?></th>				
+				<th width="20"><?php 'Sup.' ?></th>				
 				
 			</tr>
 		</thead>
@@ -37,7 +37,7 @@
 			<?php foreach ($this->articles as $article): ?>			
 			<?php $urlPage = $this->url . '&page=' . $article->id.'&npage='.$this->npage ; 
 			if (isset($_REQUEST["ref"])) {$urlPage.='&ref='.$_REQUEST["ref"].'&refville='.$_REQUEST["refville"];}?>
-			<tr <?php echo ($this->page == $article->id)? ' class=""' : (!$article->online? ' class=""' : '') ?>>
+			<tr <?php echo ($this->page == $article->id)? ' class="active"' : (!$article->online? ' class=""' : '') ?>>
 				<?php if($GLOBALS['id-connec']<1){ ?>			 			
 				  <td class="id_article"><?php echo $article->id ?></td>
 				<?php } ?>		        

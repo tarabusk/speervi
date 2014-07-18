@@ -1,13 +1,16 @@
 Web Application for tele-prospection
 
------------------------------------------------------------
+***--------------------**
+**       SETUP         **
+***--------------------**
 
-To add an access protection, modify .htaccess and add id and passwd 
+!!! IMPORTANT !!! DataBase parametres connexion and URL have to be add in **-- constantes.php --**
 
-DataBase parametres connexion have to be add in connexion-sql.php
+Restricted acces : Modify .htaccess file (decomment lines and add replace the url)  and add password and id in repertoire_protege/.htpasswd file
 
--- --------------------------------------------------------
-
+***--------------------**
+**       DATABASE      **
+***--------------------**
 --
 -- Table structure for table `echange`
 --
@@ -64,9 +67,11 @@ CREATE TABLE IF NOT EXISTS `societe` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20708 ;
 
--------------------------------------------------------------
 
-csv file for import :
+***-----------------------------------**
+**  structure of csv file for import  **
+***-----------------------------------**
+
 
 Colonne 1 : RAISON SOCIALE | 
 Colonne 2 :  DIRIGEANT | 

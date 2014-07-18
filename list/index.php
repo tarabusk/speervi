@@ -8,7 +8,7 @@ class ControllerSociete extends Controller {
 	
 	function getList() {
 	   if ($_FILES["userfile"]["name"]) $this->result_import=ImporterSocietes();
-       $nbitemparpage= 250;
+
 	   if (isset($_REQUEST['ref'])){
 	    $_SESSION['ref']=$_REQUEST['ref'];  	  
 	   }
@@ -20,16 +20,16 @@ class ControllerSociete extends Controller {
 	   }
        if (($_SESSION['ref']!='') || ($_SESSION['refville']!='')){         
           $this->npage=$_SESSION['npage'];			  
-		  $this->pagination=AfficherPaginationRecherche($_SESSION['npage'], $nbitemparpage, $_SESSION['ref'], $_SESSION['refville']);         		
-		  return getListeSocietesRechercheNom($_SESSION['ref'], $_SESSION['refville'],$_SESSION['npage'], $nbitemparpage);} 
+		  $this->pagination=AfficherPaginationRecherche($_SESSION['npage'], $GLOBALS['nbitemperpage'], $_SESSION['ref'], $_SESSION['refville']);         		
+		  return getListeSocietesRechercheNom($_SESSION['ref'], $_SESSION['refville'],$_SESSION['npage'], $GLOBALS['nbitemperpage']);} 
         else if ($_SESSION['npage']){
-          $this->pagination=AfficherPagination($_SESSION['npage'], $nbitemparpage);
+          $this->pagination=AfficherPagination($_SESSION['npage'], $GLOBALS['nbitemperpage']);
           $this->npage=$_SESSION['npage'];			
-          return getListeSocietesParPage($_SESSION['npage'], $nbitemparpage);
+          return getListeSocietesParPage($_SESSION['npage'], $GLOBALS['nbitemperpage']);
         }else 	{
-          $this->pagination=AfficherPagination($_SESSION['npage'], $nbitemparpage);
+          $this->pagination=AfficherPagination($_SESSION['npage'], $GLOBALS['nbitemperpage']);
           $this->npage=$_SESSION['npage'];			
-		  return getListeSocietesParPage(1,$nbitemparpage);
+		  return getListeSocietesParPage(1,$GLOBALS['nbitemperpage']);
 		  }
 	}
 	// Affichage

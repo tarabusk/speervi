@@ -1,7 +1,5 @@
 <?php  
-require_once ('../../variables-site.php');
-require_once('../../fonctions_mysql.php'); 
-include ("../../fonctions_php.php");
+require_once ('../fichiers-recquis.php');
 
 if ($_GET['action'] == "SupprimerEchange") { SupprimerEchange(); } 
 if ($_GET['action'] == "SupprimerRencontre") { SupprimerRencontre(); } 

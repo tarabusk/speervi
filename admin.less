@@ -90,13 +90,6 @@ height:25px;
 float:left;
 }
 
-.onglet_menu{
-float:left;
-padding:2px 10px;
-}
-.onglet_sel{
-text-decoration:underline;
-}
 
 
 .CKEditeur{
@@ -104,20 +97,35 @@ font-family: 'Arial';
 } 
 /*********************************************************************************************************/
 
+.onglet_menu{
+float:left;
+padding:2px 10px;margin-top:10px;
+}
+
+.onglet_sel{
+border-top:1px solid darken(@cl_banniere, 10%);
+background:#fafafa;height:40px;
+
+
+}
+.onglet_sel a{
+color:@cl_banniere!important;
+}
+
 
 div#header {
 height: 40px;
 background: @cl_banniere;
-box-shadow: 1px 1px 4px #6b6e77 ;
- -moz-box-shadow:1px 1px 4px #6b6e77 ;
- -webkit-box-shadow:1px 1px 4px #6b6e77 ;
+box-shadow: 1px 1px 2px #6b6e77 ;
+ -moz-box-shadow:1px 1px 2px #6b6e77 ;
+ -webkit-box-shadow:1px 1px 2px #6b6e77 ;
 border-bottom: 1px solid ##4e4e4e;
 margin-bottom:10px;
 padding:5px;
 text-align:center;
-border-radius: 10px; /* sert pour les dernières version des navigateurs à partir de IE 9*/
-   -moz-border-radius: 10px; /* sert pour les anciennes versions de Mozilla */
-   -webkit-border-radius: 10px;
+border-radius: 4px; /* sert pour les dernières version des navigateurs à partir de IE 9*/
+   -moz-border-radius: 4px; /* sert pour les anciennes versions de Mozilla */
+   -webkit-border-radius: 4px;
 }
 #titre_header{
 text-align:left;
@@ -126,7 +134,7 @@ margin-left:@left_titre_header;
 div#header a {
 float:center;
 display:block;
-font-size : 25px;
+font-size : 22px;
 color:@cl_txt_banniere;
 background-color: inherit;
 }

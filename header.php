@@ -17,7 +17,7 @@ include_once ("variables-admin.php");
 <body>
    <div id="content">
 	<div id="header">				
-		 <?php $classSel = $GLOBALS['psel']==1?"onglet_sel":"";// if($GLOBALS['psel']==1) $classSel="onglet_sel";else $classSel="";  ?>
+		 <?php $classSel = $GLOBALS['psel']==1?"onglet_sel":"";  ?>
 		<div class="onglet_menu <?php echo $classSel; ?>">		   
 			<a href="<?php echo $CheminRacine;?>list/" alt="">List of Companies</a>
 		</div>

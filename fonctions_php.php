@@ -1,6 +1,6 @@
 <?php
 
-require_once('variables-site.php');
+require_once('constantes.php');
 
 // Récupère la liste des Societes à afficher
 function ImporterSocietes(){
@@ -153,6 +153,11 @@ if (setlocale(LC_TIME, 'fr_FR') == '') {
 } else {
     $format_jour = '%e';
 }
+
+return strftime("%A $format_jour %B %Y", strtotime($date_sql));
+// affiche : vendredi 18 avril 2008
+//echo strftime("%a $format_jour %b %Y", strtotime('2008-04-18'));
+// affiche : ven. 18 avr. 2008 
 }
 function find_file($dirs,$filename,$exact=false){
  
