@@ -1,10 +1,6 @@
 <?php 
 session_start(); 
-require_once("connexion-sql.php");
 include_once ("variables-admin.php");
-include_once ("fonctions_mysql.php");
-include_once ("fonctions_php.php");
-
 ?>
 <!DOCTYPE html>
 <html>

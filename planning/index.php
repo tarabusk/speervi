@@ -1,6 +1,5 @@
 <?php
 require('../fichiers-recquis.php');
-require('../fonctions_php.php');
 $GLOBALS['psel']="2";
 // Plannings
 class ControllerSociete extends Controller {

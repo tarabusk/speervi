@@ -2,7 +2,6 @@
 session_start();
 $GLOBALS['psel']="1";
 require('../fichiers-recquis.php');
-require('../fonctions_php.php');
 $TableAction =  $_REQUEST['typeaction'];
 // Societes
 class ControllerSociete extends Controller {
