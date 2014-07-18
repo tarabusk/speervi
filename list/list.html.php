@@ -37,12 +37,12 @@
 			<?php foreach ($this->articles as $article): ?>			
 			<?php $urlPage = $this->url . '&page=' . $article->id.'&npage='.$this->npage ; 
 			if (isset($_REQUEST["ref"])) {$urlPage.='&ref='.$_REQUEST["ref"].'&refville='.$_REQUEST["refville"];}?>
-			<tr <?php echo ($this->page == $article->id)? ' class="active"' : (!$article->online? ' class="offline"' : '') ?>>
+			<tr <?php echo ($this->page == $article->id)? ' class=""' : (!$article->online? ' class=""' : '') ?>>
 				<?php if($GLOBALS['id-connec']<1){ ?>			 			
 				  <td class="id_article"><?php echo $article->id ?></td>
 				<?php } ?>		        
 				<td class="titre_article"><a href="<?php echo htmlspecialchars($urlPage) ?>"><?php echo AfficherTemperature($article->temperature).$article->nom; ?></a></td>	
-                <td class="action_article"><?php echo Form::del_button($urlPage . '&action=del') ?></td>				
+                <td class="supp_article"><?php echo Form::del_button($urlPage . '&action=del') ?></td>				
 			</tr>
 			<?php endforeach; ?>
 		</tbody>

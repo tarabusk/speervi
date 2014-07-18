@@ -2,10 +2,7 @@
 
 require_once('variables-site.php');
 
-
-
-	// Récupère la liste des Societes à afficher
-	
+// Récupère la liste des Societes à afficher
 function ImporterSocietes(){
 	// vérification sur la session authentification (la session est elle enregistrée ?) 
 	// ici les éventuelles actions en cas de réussite de la connexion 
@@ -156,11 +153,6 @@ if (setlocale(LC_TIME, 'fr_FR') == '') {
 } else {
     $format_jour = '%e';
 }
-
-return strftime("%A $format_jour %B %Y", strtotime($date_sql));
-// affiche : vendredi 18 avril 2008
-//echo strftime("%a $format_jour %b %Y", strtotime('2008-04-18'));
-// affiche : ven. 18 avr. 2008 
 }
 function find_file($dirs,$filename,$exact=false){
  
@@ -211,7 +203,6 @@ function ImageRedim($fichier_origine,$largeur_demande, $hauteur_demande, $fichie
 	  $largeur_finale = $largeur_demande;
 	  $hauteur_finale = $hauteur_temporaire;
 	}
-	//echo 'largeur_finale : '.$largeur_finale.'  - $hauteur_finale : '.$hauteur_finale.' <br/> largeurdemande : '. $largeur_demande. ' hauteur_demande : '.$hauteur_demande;
 	$image_p = imagecreatetruecolor($largeur_finale, $hauteur_finale);
 	$image_finale = imagecreatetruecolor($largeur_demande, $hauteur_demande);
     $blanc = imagecolorallocate($image_p, 250, 250, 250);
@@ -219,255 +210,16 @@ function ImageRedim($fichier_origine,$largeur_demande, $hauteur_demande, $fichie
 	 imagecolortransparent ($image_finale,$blanc);
     //imagefill($image_p, 0, 0, $blanc);
 	imagefilledrectangle($image_p, 0, 0, $largeur_finale, $hauteur_finale, $blanc);	
-	$image = imagecreatefromjpeg($fichier_origine);
-	//$image = imagecreatefrompng($fichier_origine);
-	//http://www.siteduzero.com/tutoriel-3-14597-creer-des-images-en-php.html
-	//$ecart=($hauteur_finale-$hauteur_demande) / 2;
-	//if ($ecart >=0) imagecopyresampled($image_p, $image, 1, 1, 0, $ecart, $largeur_finale-2, $hauteur_demande-2, $largeur_origine, ($hauteur_origine-$ecart));
-	//else {		
+	$image = imagecreatefromjpeg($fichier_origine);	
 	imagecopyresampled($image_p, $image, 1, 1, 0, 0, $largeur_finale-2, $hauteur_finale-2, $largeur_origine, $hauteur_origine);
 	imagecopy($image_finale, $image_p, 0, 0, 0, 0, $largeur_demande, $hauteur_demande);
-	//}
-	// Affichage
 	imagejpeg($image_finale, $fichier_resultat, 100);
 
 }
 
-//imagecopy($dest, $src, 0, 0, 20, 13, 80, 40);
 
-function supprimer_repertoire($dir) {
 
- 
-  $current_dir = opendir($dir); 
-  while($entryname = readdir($current_dir))  
-  {  
-	   if(is_dir("$dir/$entryname") and ($entryname != "." and $entryname!=".."))  
-	   { 
-	   supprimer_repertoire("${dir}/${entryname}"); 
-	   }  
-	   elseif($entryname != "." and $entryname!="..") 
-	   { 
-	   unlink("${dir}/${entryname}"); 
-	   } 	  
-	  } //Fin tant que   
-	  closedir($current_dir); 
-	  rmdir(${dir}); 
 
-} 
-
-function ScanDirectory($Directory){
-  $MyDirectory = opendir($Directory) or die('Erreur : répertoire non trouvé : '.$Directory);
-	while($Entry = @readdir($MyDirectory)) {
-		if(is_dir($Directory.'/'.$Entry)&& $Entry != '.' && $Entry != '..') {
-                         echo '<ul>'.$Directory;
-			ScanDirectory($Directory.'/'.$Entry);
-                        echo '</ul>';
-		}
-		else {
-			echo '<li>'.$Entry.'</li>';
-                }
-	}
-  closedir($MyDirectory);
-}
-function ParcourirLesImagesDuReperoire($rep){
-    $rep=$rep.'/files/';
-    $Myrep = opendir($rep) or die('Erreur : répertoire non trouvé : '.$rep);
-	while($Entry = @readdir($Myrep)) {
-		if(!(is_dir($rep.'/'.$Entry)&& $Entry != '.' && $Entry != '..')) {
-            $extension=strtolower(strrchr($Entry,'.'));
-			if (in_array ($extension, array ('.gif','.jpg','.jpeg','.png'))){
-			   	
-			  echo '<li>'.$Entry.'</li>';
-			} 
-        }
-	}
-  closedir($Myrep);			
-}
-
-function AfficherImagesDuRepertoirePourBien($rep,$img_principale){
-    $repthumb=$rep.'/thumbnails/';
-    $rep=$rep.'/files/';
-	
-    $Myrep = opendir($rep) or die('Erreur : répertoire non trouvé : '.$rep);
-	echo '<ul>';
-	$i=0;
-	while($Entry = @readdir($Myrep)) {
-		if(!(is_dir($rep.'/'.$Entry)&& $Entry != '.' && $Entry != '..')) {
-            $extension=strtolower(strrchr($Entry,'.'));
-			if (in_array ($extension, array ('.gif','.jpg','.jpeg','.png')) && ($img_principale!=$rep.$Entry)){
-			  if ($i>3)
-                echo '<li><a style="display:none" href="'.$rep.$Entry.'" class="lightbox" title=" '.GetLabelDeLaPhoto($rep.$Entry).'"><img src="'.$repthumb.$Entry.'" height="80"  alt="" /></a></li>';
-              else 
-			    echo '<li><a href="'.$rep.$Entry.'" class="lightbox" title=" '.GetLabelDeLaPhoto($rep.$Entry).'"><img src="'.$repthumb.$Entry.'" height="80"  alt="" /></a></li>';
-			  $i++;
-			} 
-        }
-		
-	}
-	echo '</ul>';
-  closedir($Myrep);			
-}
-
-function AfficherImagesDuReperoire($rep){
-    $repthumb=$rep.'/thumbnails/';
-    $rep=$rep.'/files/';
-	
-    $Myrep = opendir($rep) or die('Erreur : répertoire non trouvé : '.$rep);
-	echo '<ul>';
-	while($Entry = @readdir($Myrep)) {
-		if(!(is_dir($rep.'/'.$Entry)&& $Entry != '.' && $Entry != '..')) {
-            $extension=strtolower(strrchr($Entry,'.'));
-			if (in_array ($extension, array ('.gif','.jpg','.jpeg','.png'))){
-			   	
-			  echo '<li><a href="'.$rep.$Entry.'" class="lightbox" title=" '.GetLabelDeLaPhoto($rep.$Entry).'"><img src="'.$repthumb.$Entry.'" height="80"  alt="" /></a></li>';
-			} 
-        }
-	}
-	echo '</ul>';
-  closedir($Myrep);			
-}
-
-function ParcourirLesMiniaturesDuReperoire($rep){
-    $rep=$rep.'/thumbnails/';
-    $Myrep = opendir($rep) or die('Erreur : répertoire non trouvé : '.$rep);
-	while($Entry = @readdir($Myrep)) {
-		if(!(is_dir($rep.'/'.$Entry)&& $Entry != '.' && $Entry != '..')) {
-            $extension=strtolower(strrchr($Entry,'.'));
-			if (in_array ($extension, array ('.gif','.jpg','.jpeg','.png'))){
-			   	
-			  echo '<li>'.$Entry.'</li>';
-			} 
-        }
-	}
-  closedir($Myrep);			
-}
-function ParcourirLesTemplates(){
-    $items=array();
-    if ($GLOBALS['EnDevLocal'])
-      $rep=$_SERVER["DOCUMENT_ROOT"].'/'.$GLOBALS['repsite'];
-	else
-	  $rep=$_SERVER["DOCUMENT_ROOT"].'/'.$GLOBALS['repsite'];
-	//echo 'JJJJJJJJJJJJJJ '.$_SERVER["DOCUMENT_ROOT"];
-	///$items[]='JJJJJJJJJJJJJJ '.$_SERVER["DOCUMENT_ROOT"];
-    $Myrep = opendir($rep) or die('Erreur : répertoire non trouvé : '.$rep);
-	while($Entry = @readdir($Myrep)) {
-		if(!(is_dir($rep.'/'.$Entry)&& $Entry != '.' && $Entry != '..')) {
-     
-			if (preg_match('`^index`', $Entry)){		   	
-			  $items[]= $Entry;
-			} 
-        }
-	}
-  closedir($Myrep);		
-  return  $items;
-}
-
-function advScanDir( $dir, $mode )
-{
- // creation du tableau qui va contenir les elements du dossier
- $items = array();
- 
- // ajout du slash a la fin du chemin s'il n'y est pas
- if( !preg_match( "/^.*\/$/", $dir ) ) $dir .= '/';
- 
- // Ouverture du repertoire demande
-  $handle = opendir( $dir );
- 
- // si pas d'erreur d'ouverture du dossier on lance le scan
- if( $handle != false )
- {
-  
-  // Parcours du repertoire
-  while( $item = readdir($handle) )
-  {
-   if($item != '.' && $item != '..')
-   {
-    // selon le mode choisi
-    switch( $mode )
-    {
-     case 'DOSSIERS_SEULEMENT' :
-      if( is_dir( $dir.$item ) )
-       $items[] = $item;
-      break;
-     
-     case 'FICHIERS_SEULEMENT' :
-      if( !is_dir( $dir.$item ) )
-       $items[] = $item;
-      break;
-     
-     case  'TOUT' :
-      $items[] = $item;
-    
-    }
-   }
-  }
-  
-  // Fermeture du repertoire
-  closedir($handle);
-   
-  return $items;
-  
- }
- else return false;
-  
-}
-
-function PrixFormate($LePrix){
-return number_format($LePrix, 0, '', ' ');
-}
-
-function MiniatureDeLImage($lien_image){
- if ($lien_image=='')
-   return  'photos/defaut.jpg';
- else
-   return str_replace('files', 'thumbnails',$lien_image);
-}
-
-function GenereURLREWRITING(){
-	$codeConstant='
-	#Options +FollowSymLinks 
-	RewriteEngine On';
-
-	$codeConstant.='
-	RewriteCond %{HTTP_HOST} ^www\.'.$GLOBALS['urlPourHtAccess'].'(.*)$ [NC]
-    RewriteRule (.*) '.$GLOBALS['urlSite'].'/$1 [R=301,L]
-	ErrorDocument  404  '.$GLOBALS['urlSite'].'
-    ErrorDocument  403  '.$GLOBALS['urlSite'].'
-	#RewriteRule ^index\.php$ '.$GLOBALS['urlSite'].' [QSA,L,R=301]
-	RewriteRule ^bien-([0-9]+).php$ bien.php?bien=$1 [L]
-	RewriteRule ^vente-bien-([0-9]+).php$ bien.php?bien=$1 [L]
-	RewriteRule ^location-bien-([0-9]+).php$ bien.php?bien=$1 [L] 
-	RewriteRule ^vente-([a-zA-Z\-]+)-bien-([0-9]+).php$ bien.php?bien=$2 [L]
-	RewriteRule ^location-([a-zA-Z\-]+)-bien-([0-9]+).php$ bien.php?bien=$2 [L]
-    
-    	' ;
-	//echo dirname(__FILE__)."/.htaccess";
-	$fp = fopen(dirname(__FILE__)."/.htaccess","w" ); // ouverture du fichier en écriture
-	fputs($fp, "$codeConstant" );
-
-	foreach (getListe ('page', 'ordre') as $LaPage){
-	    if ($LaPage->home_page==1){		 
-		  $redirection = '  DirectoryIndex '.$LaPage->zz_template.'?page='.$LaPage->id.' index.html index.php '  ;
-		  fputs($fp, "\n" ); // on va a la ligne
-		  fputs($fp, "$redirection" ); // on écrit la redirection dans le fichier
-		}		
-		else if ($LaPage->zz_url!='' && $LaPage->home_page!=1){
-			$redirection = 'RewriteRule ^'.$LaPage->zz_url.'$ '.$LaPage->zz_template.'?page='.$LaPage->id.' [L] '     ;
-			fputs($fp, "\n" ); // on va a la ligne
-			fputs($fp, "$redirection" ); // on écrit la redirection dans le fichier
-			$redirection = 'RewriteRule ^'.$LaPage->zz_url.'-([0-9]+)$ '.$LaPage->zz_template.'?page='.$LaPage->id.'&npage=$1 [L] '     ;
-			fputs($fp, "\n" ); // on va a la ligne
-			fputs($fp, "$redirection" ); // on écrit la redirection pour la pagination de la page
-		}
-	}
-	foreach (getListe('redirection', 'id') as $LaRedirection){
-	  $redirection = 'RewriteRule ^'.$LaRedirection->avant.'$ '.$LaRedirection->apres.' [L,R=301] '     ;
-	  fputs($fp, "\n" ); // on va a la ligne
-	  fputs($fp, "$redirection" ); // on écrit la redirection dans le fichier
-	}
-	
-	fclose($fp);
-}
 // Génère un cryptage hash
 function getHash($chaine) {
   return md5('tara!' . $chaine . '!busk');
@@ -481,59 +233,6 @@ function GenererZatyrzorr(){
 	fclose($fp);
 }
 
-function EnvoyerAlertes($id_bien){
-      $LeBien=getEnregistrement('bien',$id_bien);	
-	  $i=0;
-      if($LeBien){	     	  
-	  $message_retour='';
-	  foreach (ListeDesAlertesRepondantAuxCriteres($LeBien->location, $LeBien->id_type_bien, $LeBien->prix, $LeBien->id_lieu,$LeBien->surface,$LeBien->nb_pieces) as $Lalerte){
-	 
-		 //auth.smtp.1and1.fr port 25 -- src : http://a-pellegrini.developpez.com/tutoriels/php/mail/
-			ini_set("SMTP","auth.smtp.1and1.fr") ;//$_SERVER["SERVER_ADMIN"]
-			$to = $Lalerte->email;
-			
-			// Subject
-			$subject = 'Une nouvelle annonce immobilière proposée par '.$NomDuSite;
-			// Message			
-			//$msg .= 'Content-type: text/html; charset=utf-8'."\r\n\r\n";			
-	
-			$ImageMiniature=str_replace('files','thumbnails',$LeBien->image);
-		
-			$msg = '		   
-				<div style="padding:5px; margin:auto;width:600px; background-color:#bfd70e; border:#000000 thin solid; border-radius: 15px; -moz-border-radius: 15px;-webkit-border-radius: 15px;">     
-				'.$NomDuSite.' vous propose un bien correspondant à vos critères de recherche
-				<img style=""  src="'.$GLOBALS['urlSite'].$ImageMiniature.'" />';			
-				
-				 if($LeBien->id_type_bien!=0) $msg .= strTypeDuBien($LeBien->id_type_bien).'<br/>';
-				 if($LeBien->prix!=0) $msg .=  'Prix : '.PrixFormate($LeBien->prix).' € <br/>';
-				 if($LeBien->id_lieu!=0) $msg .=  'Lieu : '.NomDuLieu($LeBien->id_lieu).'<br>';
- 				 if($LeBien->surface!=0) $msg .=  'Surface :'.$LeBien->surface.'m² <br/> ';
-				 if($LeBien->nb_pieces!=0) $msg .=  'Nombre de pièces :'.$LeBien->nb_pieces.' <br/> ';
-				 if($LeBien->description!='') $msg .=  $LeBien->description; 
-				 if($LeBien->charges!='') $msg .=  'Charges : '.$LeBien->charges.'  <br/>';
-				 if($LeBien->impots!=0) $msg .=  'Impôts fonciers : '.PrixFormate($LeBien->impots).' € <br/>	
-                			 
-				</div>		'."\r\n";	
-			$msg .='div style="padding:5px; margin:auto;width:600px; background-color:#bfd70e; border:#000000 thin solid; border-radius: 15px; -moz-border-radius: 15px;-webkit-border-radius: 15px;">     
-			       
-					 Pour vous désinscrire des messages d\'alerte <a href="'.$GLOBALS['urlSite'].'desinscription.php?hash='.$Lalerte->hash.'">cliquez ici</a> 	
-				  </div>';	
-			$headers = 'From: '.$NomDuSite.' <mail@server.com>'."\r\n";		
-			//$headers .= 'Bcc: Moi <moi@server.com>; lui <lui@server2.com>'."\r\n";
-			$headers .= 'Mime-Version: 1.0'."\r\n";
-			$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
-			$headers .= "\r\n";		
-			
-			$EnvoiMailFailed = !mail($to, $subject, $msg, $headers);
-		  if (!$EnvoiMailFailed) $i++;
-		  $message_retour.='<br/>'.$Lalerte->email;
-		 
-		  AjouterAlerteEmail ($LeBien->id,$Lalerte->id);
-		}
-		AffecterDateAlerteAuBien($id_bien,$i);
-		}
-		return $i.' emails envoyés'.$message_retour;
-	}
 function URLCouranteSansParametres(){
 	$urlCourante=$_SERVER["REQUEST_URI"];
 	$urlGet = explode("?",$urlCourante);
@@ -569,44 +268,6 @@ function ReecrireUrl($titre)
 }
 
 
-function formatForUrl($texte)
-{
-    /* suppression des espaces en début et fin de chaîne*/
-    $texte = trim($texte);
- 
-    /* suppression des accents, tréma et cédilles + qlq autres car. spéciaux */
-    $aremplacer = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ
-    ßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿ&#340;&#341;';
-    $enremplacement = 'aaaaaaaceeeeiiiidnoooooouuuuy
-    bsaaaaaaaceeeeiiiidnoooooouuuyybyrr';
-    $texte = utf8_decode($texte);    
-    $texte = strtr($texte, utf8_decode($aremplacer), $enremplacement);
-
-    /* mise en minuscule */
-    $texte = strtolower($texte);
-
-    /* suppression des espaces et car. non-alphanumériques */
-    $texte = str_replace(" ",'-',$texte);
-    $texte = preg_replace('#([^a-z0-9-_])#','-',$texte);
-
-    /* suppression des tirets multiples */
-    $texte = preg_replace('#([-]+)#','-',$texte);
-
-/* ici vous pouvez couper les tirets de début et fin de chaine */
-/* voir : http://blog.darklg.fr/94/nettoyer-une-chaine-pour-une-url-en-php/ */
-
-    return $texte;
-}
-
-function URLdesBiens ($LeBien){
-    $type=ReecrireUrl(strTypeDuBien($LeBien->id_type_bien));
-	if ($type!='')$type.='-';
-	if ($LeBien->location){
-	  return 'location-'.$type.'bien-'.$LeBien->id.'.php';
-	}else{
-	  return 'vente-'.$type.'bien-'.$LeBien->id.'.php';
-	}
-}
 function AfficherTemperature($temperature){
 		       switch ($temperature)
 				{
@@ -617,6 +278,6 @@ function AfficherTemperature($temperature){
 					break;
 				}
 				return '<div id="div_temp" title="'.$temperature.'" style="background:'.$couleur.'"> </div>';
-		} 
+} 
 
 ?>

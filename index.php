@@ -1,6 +1,4 @@
-<script type="text/javascript">
-<!--
-window.location = "http://localhost/speervi/list/"
-//-->
-</script>
-
+<?php      
+//echo $_SERVER['DOCUMENT_ROOT'];
+  header('Location: list/index.php');      
+?>

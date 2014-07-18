@@ -1,9 +1,8 @@
 <?php 
+$MetaAuthor='<meta name="author" lang="fr" content="tarabusk.net"> ';
+if(!isset($AjouterBaliseMeta)){$AjouterBaliseMeta=$MetaAuthor;}
+else {$AjouterBaliseMeta.=$MetaAuthor;}
+
 $GLOBALS['EnDevLocal']=stristr($_SERVER["HTTP_HOST"], 'localhost')!=false;
-
-
-  $GLOBALS['urlPourHtAccess']="localhost/speervi/";
-  $GLOBALS['urlSite'] ="http://".$urlPourHtAccess;
-  $GLOBALS['repsite']="speervi/";
-
+$GLOBALS['urlSite'] ="http://localhost/speervi/";
 ?>

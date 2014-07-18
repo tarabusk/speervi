@@ -5,5 +5,7 @@
 #<Limit GET POST>
 #require valid-user
 #</Limit>
+RewriteEngine on
+
 
  

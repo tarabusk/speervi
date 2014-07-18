@@ -3,10 +3,10 @@ $titre_site="Speervi";
 
 $GLOBALS['EnDevLocal']=stristr ($_SERVER["HTTP_HOST"], 'localhost')!=false;
   
-  $path = preg_replace("#" . $_SERVER["DOCUMENT_ROOT"] . "#", "/", preg_replace('/\\\\/', '/', dirname(__FILE__))) . '/';
-  $path = preg_replace("#//#", "/", $path); // Vieille version d'Apache
-  $CheminRacine = $path ; 
-  $CheminSite ='/';
+$path = preg_replace("#" . $_SERVER["DOCUMENT_ROOT"] . "#", "/", preg_replace('/\\\\/', '/', dirname(__FILE__))) . '/';
+$path = preg_replace("#//#", "/", $path); // Vieille version d'Apache
+$CheminRacine = $path ; 
+$CheminSite ='/';
  
 (isset ($_REQUEST["page"]))?$page = $_REQUEST["page"]:$page ='';
 
