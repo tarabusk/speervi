@@ -7,8 +7,7 @@
 STEP 1 : Download the files to your server
 STEP 2 : Create a database and add the tables declared below 
 STEP 3 : DataBase parametres connexion and URL of the application have to be added in the ** constantes.php ** file
-
- Restricted acces : Modify .htaccess file (decomment lines and add replace the url)  and add password and id in repertoire_protege/.htpasswd file
+STEP 4 : If you need Restricted acces, Modify .htaccess file (decomment lines and add replace the url) and add password and id in : repertoire_protege/.htpasswd file
 
 */
 -- ***--------------------**
