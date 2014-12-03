@@ -45,7 +45,7 @@ if ($_REQUEST ['id_rencontre_ok']){
 <script type="text/javascript">
 <!--
 function champsok() {
-	//check si TITRE renseigné
+	//check si TITRE renseignÃ©
 	if (document.formulaire_envoi_fichier.nom.value == 0) {
 		alert("<?php echo 'Vous devez entrer un nom pour la societe' ?>");
 		return false;
@@ -85,13 +85,13 @@ function champsrencontre_okok(){
 			  <div class="formulaire">
 			  <form enctype="multipart/form-data" name="form_rencontre_ok" id="form_rencontre_ok" class="article_form" method="post" action="" onsubmit="return champsrencontre_okok()">
 			    <?php echo Form::hidden('id_rencontre_ok', $LaDerniereRencontre->id);
-				      echo Form::btn_valider('Rappel effectué!');
+				      echo Form::btn_valider('Rappel effectuÃ©!');
 				?>
 			  </form>
 			  </div>
 			  <?php
             }else{
-              echo '<div class="liste"><div id="div_rappel"> Aucun rappel programmé </div></div>';
+              echo '<div class="liste"><div id="div_rappel"> Aucun rappel programmÃ© </div></div>';
 			  ?>
 			    <div class="formulaire">
 			    <div id="encart_rencontre">		         	
@@ -116,10 +116,10 @@ function champsrencontre_okok(){
 
 	
     <?php }else{ ?>
-	 <h1> Choisissez un rappel à effectuer</h1>
+	 <h1> &larr; Choose one of the call back that has to be done </h1>
 	   <?php } ?>
 		<?php if ($this->page > 0){ ?>
-		<hr><div  id="encart_echange"><div title="Vider les champs pour ajouter un nouvel échange" id="ajouter_echange"> + </div>
+		<hr><div  id="encart_echange"><div title="Vider les champs pour ajouter un nouvel Ã©change" id="ajouter_echange"> + </div>
 		<h2 id="titre_encart_echange"> Echanges </h2>
 		
 		
@@ -129,9 +129,9 @@ function champsrencontre_okok(){
 			$ni=0;
 			foreach(GetListesEchangesSociete ($this->article->id) AS $LEchange){
 			  $ni++;
-			  echo '<li  class="echange_li" id="echange_li_'.$LEchange->id.'"><span class="date_echange"> '.datefrFrancaiseAvecA ($LEchange->date_echange).' </span> - '.$LEchange->commentaire.'  <div class="supprimer_echange" id="echange_'.$LEchange->id.'"  title="Supprimer l\'échange"> x </div> </li>';
+			  echo '<li  class="echange_li" id="echange_li_'.$LEchange->id.'"><span class="date_echange"> '.datefrFrancaiseAvecA ($LEchange->date_echange).' </span> - '.$LEchange->commentaire.'  <div class="supprimer_echange" id="echange_'.$LEchange->id.'"  title="Supprimer l\'Ã©change"> x </div> </li>';
 			}
-			if($ni==0) echo 'Pas encore d\'échange avec cette société';
+			if($ni==0) echo 'Pas encore d\'Ã©change avec cette sociÃ©tÃ©';
 			?>
 			</ul>
 			</div>
@@ -139,12 +139,12 @@ function champsrencontre_okok(){
 			<form enctype="multipart/form-data" name="form_echange" id="form_echange" class="article_form" method="post" action="" onsubmit="return champsechangeok()">
 			  Date : <input name="date_echange" id="date_echange" type="text" class="largeur_petit3"/><br/>
 			  <?php echo Form::hidden('type_echange', 'telephone'); ?>
-			  <!--<input type="radio" name="type_echange" value="telephone" checked="checked"> Téléphonique &nbsp;&nbsp;
+			  <!--<input type="radio" name="type_echange" value="telephone" checked="checked"> TÃ©lÃ©phonique &nbsp;&nbsp;
 			  <input type="radio" name="type_echange" value="physique" > Rendez-vous physique &nbsp;&nbsp;
 			  <input type="radio" name="type_echange" value="email"> Email <br/>-->
 			  <?php echo Form::textarea('commentaire_echange', '','Commentaire','','largeur_moygrand');
 			  echo Form::hidden('id_echange', 0);
-			  echo Form::btn_valider('Ajouter un nouvel échange');
+			  echo Form::btn_valider('Ajouter un nouvel Ã©change');
 			  ?>
 			</form>
 			</div>
@@ -153,7 +153,7 @@ function champsrencontre_okok(){
 	<?php } ?>
 	<hr>
 	<?php if ($this->page > 0){ ?>
-    <h2 id="titre_encart_societe" > Société </h2>
+    <h2 id="titre_encart_societe" > SociÃ©tÃ© </h2>
     <div id="encart_societe">
 	 <form enctype="multipart/form-data" name="formulaire_envoi_fichier" id="formulaire_envoi_fichier" class="article_form" method="post" action="" onsubmit="return champsok()">
 	   <div class="liste">
@@ -164,18 +164,18 @@ function champsrencontre_okok(){
 		echo Form::text('nom', $this->article->nom, 'Nom','','largeur_grand').'<br/>' ;
 		?>
 		<?php ($this->article->temperature=='indetermine')?$check='checked="checked"':$check=''; ?>
-		 <input type="radio" name="temperature" value="indetermine"  <?php echo $check; ?>> Indeterminé &nbsp;&nbsp;
+		 <input type="radio" name="temperature" value="indetermine"  <?php echo $check; ?>> IndeterminÃ© &nbsp;&nbsp;
 		 <?php ($this->article->temperature=='chaud')?$check='checked="checked"':$check=''; ?>
 		 <input type="radio" name="temperature" value="chaud" <?php echo $check; ?>> Chaud &nbsp;&nbsp;
 		 <?php ($this->article->temperature=='tiede')?$check='checked="checked"':$check=''; ?>
-		 <input type="radio" name="temperature" value="tiede" <?php echo $check; ?>> Tiède &nbsp;&nbsp;
+		 <input type="radio" name="temperature" value="tiede" <?php echo $check; ?>> TiÃ¨de &nbsp;&nbsp;
 		 <?php ($this->article->temperature=='froid')?$check='checked="checked"':$check=''; ?>
 		 <input type="radio" name="temperature" value="froid"<?php echo $check; ?>> Froid <br/>
 		<?php
 		echo Form::textarea('adresse', $this->article->adresse,'Adresse','','largeur_moyen') .'<br/>' ;
 		echo Form::text('cp', $this->article->cp, 'CP','','largeur_petit1')  ;
 		echo Form::text('ville', $this->article->ville, 'Ville','','largeur_petit4') .'<br/>' ;
-		echo Form::text('telephone', $this->article->telephone, 'Téléphone','','largeur_petit3') .'<br/>' ;
+		echo Form::text('telephone', $this->article->telephone, 'TÃ©lÃ©phone','','largeur_petit3') .'<br/>' ;
 		echo Form::text('email', $this->article->email, 'E-mail','','largeur_moyen')   .'<br/>' ;
 		echo Form::text('site_web', $this->article->site_web, 'Site WEB','','largeur_moyen') .'<br/>' ;
 		echo Form::text('dirigeant', $this->article->dirigeant, 'Dirigeant','','largeur_moyen') .'<br/>' ;
@@ -185,8 +185,8 @@ function champsrencontre_okok(){
 		<div class="formulaire"><?php
 		echo '<div id="titre_contact"> Contact </div>';
 		echo Form::text('nom_contact', $this->article->nom_contact, 'Nom du contact','','largeur_moyen')   .'<br/>' ;
-		echo Form::text('prenom_contact', $this->article->prenom_contact, 'Prénom du contact','','largeur_moyen') .'<br/>' ;
-		echo Form::text('tel_contact', $this->article->tel_contact, 'Téléphone du contact&nbsp;&nbsp;','','largeur_petit3')   .'<br/>' ;
+		echo Form::text('prenom_contact', $this->article->prenom_contact, 'PrÃ©nom du contact','','largeur_moyen') .'<br/>' ;
+		echo Form::text('tel_contact', $this->article->tel_contact, 'TÃ©lÃ©phone du contact&nbsp;&nbsp;','','largeur_petit3')   .'<br/>' ;
 		echo Form::text('portable_contact', $this->article->portable_contact, 'Portable du contact &nbsp;&nbsp;&nbsp;&nbsp;','','largeur_petit3') .'<br/>' ;
 		echo Form::text('email_contact', $this->article->email_contact, 'Email du contact','','largeur_moyen') .'<br/>' ;
 		?>
@@ -263,7 +263,7 @@ jQuery(function($){
                           $("#date_echange").val(data.date);	
                           $("#commentaire_echange").val(data.commentaire);
 						 
-						  $("#form_echange input[type='submit']").val('Modifier l\'échange'); 
+						  $("#form_echange input[type='submit']").val('Modifier l\'Ã©change'); 
 						  $("#form_echange input:radio[value="+data.type_echange+"]").attr("checked","checked");
 						  }
 			  })
@@ -274,7 +274,7 @@ jQuery(function($){
 	  $("#id_echange").val(0);	
 	  $("#date_echange").val('');	
 	  $("#commentaire_echange").val(''); 
-	  $("#form_echange input[type='submit']").val('Ajouter un nouvel échange'); 	
+	  $("#form_echange input[type='submit']").val('Ajouter un nouvel Ã©change'); 	
       $(this).fadeOut();
 	  $(".liste li").removeClass("class_li");
 	});
