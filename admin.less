@@ -26,36 +26,32 @@
 @cl_une:#3A129D;
 
 body {
-margin: 0;
 background: #fafafa;
-font-family: Times sans,serif;
+font-family: 'Oswald',  sans,serif;
 color: @cl_texte;
-font-size: 14px;
+font-size: 12px;
 min-width:600px;
 margin: auto;
-width: 1280px;
 }
+
 h1{
-font-size:22px;
+font-size:18px;
 }
 #content{
-margin:5px auto;
+margin:5px 2%;
+border:2px solid @cl_banniere;
 }
 
 #contenu{
 min-height:600px;
-min-width:1024px;
-/*
-box-shadow: 1px 1px 4px #6b6e77 ;
- -moz-box-shadow:1px 1px 4px #6b6e77 ;
- -webkit-box-shadow:1px 1px 4px #6b6e77 ;*/
+margin-top:30px;
 }
 #page_accueil{
-font-size:20px;
+font-size:16px;
 line-height:28px;
 }
 #info_accueil{
-font-size:15px;margin-left:27%;margin-top:5px;font-weight:bold;color:@cl_banniere;line-height:20px;
+font-size:12px;margin-left:27%;margin-top:5px;font-weight:bold;color:@cl_banniere;line-height:20px;
 }
 #form_droit h2{
 margin-bottom:3px;
@@ -81,7 +77,7 @@ clear: both;
 }
 
 input {
-font-size:12px;
+font-size:10px;
 }
 
 #fond_acces_faq{
@@ -90,42 +86,24 @@ height:25px;
 float:left;
 }
 
-
-
 .CKEditeur{
 font-family: 'Arial';
 } 
 /*********************************************************************************************************/
 
-.onglet_menu{
-float:left;
-padding:2px 10px;margin-top:10px;
-}
-
-.onglet_sel{
-border-top:1px solid darken(@cl_banniere, 10%);
-background:#fafafa;height:40px;
-
-
-}
-.onglet_sel a{
-color:@cl_banniere!important;
-}
-
-
 div#header {
 height: 40px;
 background: @cl_banniere;
 box-shadow: 1px 1px 2px #6b6e77 ;
- -moz-box-shadow:1px 1px 2px #6b6e77 ;
- -webkit-box-shadow:1px 1px 2px #6b6e77 ;
+-moz-box-shadow:1px 1px 2px #6b6e77 ;
+-webkit-box-shadow:1px 1px 2px #6b6e77 ;
 border-bottom: 1px solid ##4e4e4e;
 margin-bottom:10px;
 padding:5px;
 text-align:center;
-border-radius: 4px; /* sert pour les dernières version des navigateurs à partir de IE 9*/
-   -moz-border-radius: 4px; /* sert pour les anciennes versions de Mozilla */
-   -webkit-border-radius: 4px;
+border-radius: 0px 0px 4px 4px; 
+-moz-border-radius: 0px 0px 4px 4px; 
+-webkit-border-radius: 0px 0px 4px 4px;
 }
 #titre_header{
 text-align:left;
@@ -134,7 +112,7 @@ margin-left:@left_titre_header;
 div#header a {
 float:center;
 display:block;
-font-size : 22px;
+font-size : 28px;
 color:@cl_txt_banniere;
 background-color: inherit;
 }
@@ -143,14 +121,31 @@ div#header li a {
 color:@cl_texte;
 }
 
+.onglet_menu{
+float:left;
+padding:2px 10px;margin-top:10px;
+}
+
+div#header .onglet_sel{
+border-top:1px solid darken(@cl_banniere, 8%);
+background:darken(@cl_banniere, 20%);height:40px;
+}
+div#header .onglet_menu:hover a{
+color:darken(@cl_banniere, 35%);
+}
+div#header .onglet_menu a{
+font-size:18px;
+}
+div#header .onglet_sel a{
+color:@cl_banniere;
+}
+
 div#site {
-font-size: 12px;
+font-size: 10px;
 font-weight: bold;
 padding-top: 6px;
 padding-left: 314px;
 }
-
-
 
 div#message_accueil {
 padding-left: 250px;
@@ -159,7 +154,7 @@ text-transform: uppercase;
 
 div#message_accueil h1 {
 color: #fff;
-font-size: 20px;
+font-size: 17px;
 font-weight: bold;
 margin: 0;
 padding: 4px;
@@ -175,10 +170,6 @@ table.liste_articles th {
 	background: @cl_banniere_claire;
 	padding: 2px;
 	height:30px;
-	
-}
-table.liste_articles td {
-	/*height:18px;*/
 	
 }
 
@@ -238,10 +229,10 @@ width:180px!important;
 }
 input.largeur_moyen, textarea.largeur_moyen{
 width:300px!important;
-}
+}/*
 input.largeur_grand, textarea.largeur_grand{
 width:500px!important;
-}
+}*/
 input.largeur_moygrand, textarea.largeur_moygrand{
 width:380px!important;
 }
@@ -255,7 +246,7 @@ label
 */
 label{
 font-style:italic;
-font-size:15px;
+font-size:12px;
 }
 form.article_form>table>tbody>tr>td {
 text-align: left;
@@ -270,7 +261,7 @@ form.article_form input[type='text'], form.article_form input[type='file'], form
 	padding-left: 5px;
 	font-family: Arial, Verdana, "Lucida Grande", Tahoma, Helvetica, Sans-Serif;
 	height:23px;
-	font-size:14px;
+	font-size:12px;
 	cursor:pointer;
 	border-radius: 0px 3px 3px 3px;
 	-moz-border-radius: 0px 3px 3px 3px;
@@ -346,7 +337,7 @@ form.article_form .submit_button, form.article_form input[type='submit'], #liste
 float: right;
 width: 30px;
 height: 30px;
-font-size: 40px;
+font-size: 36px;
 display: block;
 line-height: 25px;
 }
@@ -377,7 +368,7 @@ width:@pourc_liste_droite;
 float:left;
 background:white;
 text-shadow: 0 1px 0 #FFFFFF;
-border-left:2px solid #6b6e77 ;
+border:2px solid darken(@cl_banniere, 30%) ;
 padding-left:5px; 
 color:darken(@cl_banniere, 20%);
 }
@@ -587,7 +578,7 @@ background: @cl_banniere;
 box-shadow: 1px 1px 4px #6b6e77 ;
  -moz-box-shadow:1px 1px 4px #6b6e77 ;
  -webkit-box-shadow:1px 1px 4px #6b6e77 ;
- border-radius: 0px 10px; /* sert pour les dernières version des navigateurs à partir de IE 9*/
+ border-radius: 0px 10px; /* sert pour les derniÃ¨res version des navigateurs Ã  partir de IE 9*/
    -moz-border-radius: 0px 10px; /* sert pour les anciennes versions de Mozilla */
    -webkit-border-radius: 0px 10px;
 }
@@ -609,7 +600,7 @@ cursor :pointer;padding:3px;
 }
 #form_droit .liste li, .liste_planning li{
 border:1px solid transparent;padding:3px;
-border-radius: 8x; /* sert pour les dernières version des navigateurs à partir de IE 9*/
+border-radius: 8x; /* sert pour les derniÃ¨res version des navigateurs Ã  partir de IE 9*/
 -moz-border-radius: 8px; /* sert pour les anciennes versions de Mozilla */
 -webkit-border-radius: 8px;
 }
