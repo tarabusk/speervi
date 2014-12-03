@@ -1,13 +1,16 @@
 
+/*
+***---------------------------------------------------------**
+**       SETUP  Web Application for tele-prospection        **
+***---------------------------------------------------------**
 
--- ***---------------------------------------------------------**
--- **       SETUP  Web Application for tele-prospection        **
--- ***---------------------------------------------------------**
+STEP 1 : Download the files to your server
+STEP 2 : Create a database and add the tables declared below 
+STEP 3 : DataBase parametres connexion and URL of the application have to be added in the ** constantes.php ** file
 
--- !!! IMPORTANT !!! DataBase parametres connexion and URL have to be add in **-- constantes.php --**
+ Restricted acces : Modify .htaccess file (decomment lines and add replace the url)  and add password and id in repertoire_protege/.htpasswd file
 
--- Restricted acces : Modify .htaccess file (decomment lines and add replace the url)  and add password and id in repertoire_protege/.htpasswd file
-
+*/
 -- ***--------------------**
 -- **       DATABASE      **
 -- ***--------------------**
@@ -25,6 +28,9 @@ CREATE TABLE IF NOT EXISTS `echange` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=875 ;
 
+INSERT INTO `echange` (`id`, `date_echange`, `type_echange`, `id_societe`, `appele`, `commentaire`) VALUES
+(875, '2014-12-03 14:00:00', 'telephone', 20708, 0, 'We had a one hour call to check the needs');
+
 -- --------------------------------------------------------
 
 --
@@ -39,6 +45,9 @@ CREATE TABLE IF NOT EXISTS `rencontre` (
   `commentaire` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=324 ;
+
+INSERT INTO `rencontre` (`id`, `date_rencontre`, `type_rencontre`, `id_societe`, `commentaire`) VALUES
+(324, '2015-05-22 10:30:00', 'telephone', 20708, 'Call back Gaëlle');
 
 -- --------------------------------------------------------
 
@@ -66,6 +75,10 @@ CREATE TABLE IF NOT EXISTS `societe` (
   `autre` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20708 ;
+
+INSERT INTO `societe` (`id`, `nom`, `adresse`, `cp`, `ville`, `telephone`, `email`, `site_web`, `nom_contact`, `prenom_contact`, `tel_contact`, `portable_contact`, `email_contact`, `temperature`, `dirigeant`, `naf`, `autre`) VALUES
+(20708, 'Tarabusk.net', '1519 Hyde Street', '94109', 'San Franciso', '', '', 'http://tarabusk.net', 'Tara', '', '4153122664', '', 'tarabusk@gmail.com', 'chaud', '', '', '');
+
 
 /*
 ***-----------------------------------**
