@@ -12,6 +12,7 @@ include_once ("variables-admin.php");
 	<link rel='stylesheet' type='text/css' href='<?php echo $CheminRacine;?>scripts/timepicker/jquery.ui.timepicker.css' />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
